@@ -3,6 +3,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
+
 const apiUrl = 'https://flixster-movies-7537569b59ac.herokuapp.com/';
 
 @Injectable({
@@ -17,8 +18,37 @@ export class UserRegistrationService {
     );
   }
 
+
   public loginUser(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${apiUrl}/login`, { username, password }).pipe(
+    const credentials = { username, password };
+    // Log credentials before sending the request
+    console.log('Login credentials:', credentials);
+  
+    return this.http.post<any>(`${apiUrl}login`, credentials).pipe(
+      map((response: any) => {
+        localStorage.setItem('token', response.token);
+        return response;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          console.error('Login failed: Invalid credentials');
+          return throwError(() => new Error('Invalid username or password.'));
+        } else {
+          console.error('Login error:', error);
+          return throwError(() => new Error('An error occurred during login. Please try again.'));
+        }
+      })
+    );
+  }
+  
+  
+   
+
+  /*public loginUser(username: string, password: string): Observable<any> {
+    const credentials = { username, password };
+      // Log credentials before sending the request
+      console.log('Login credentials:', credentials);
+    return this.http.post<any>(`${apiUrl}login`, { username, password }).pipe(
       map((response: any) => {
         localStorage.setItem('token', response.token);
         return response;
@@ -33,7 +63,8 @@ export class UserRegistrationService {
         }
       })
     );
-  }
+  } */
+
 
   public getAllMovies(): Observable<any> {
     const headers = this.addAuthHeaders();
@@ -119,12 +150,18 @@ export class UserRegistrationService {
     });
   }
 
-  private handleError(error: HttpErrorResponse): any {
-    if (error.error instanceof ErrorEvent) {
-      console.error('Some error occurred:', error.error.message);
-    } else {
-      console.error(`Error Status code ${error.status}, Error body is: ${error.error}`);
+  
+private handleError(error: HttpErrorResponse): any {
+  if (error.error instanceof ErrorEvent) {
+    console.error('Some error occurred:', error.error.message);
+  } else {
+    console.error(`Error Status code ${error.status}, Error body is: ${JSON.stringify(error.error)}`);
+    if (error.status === 400) {
+      return throwError('Bad Request: ' + JSON.stringify(error.error));
     }
-    return throwError('Something bad happened; please try again later.');
   }
+  return throwError('Something bad happened; please try again later.');
 }
+
+}
+
