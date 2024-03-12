@@ -19,12 +19,11 @@ export class UserRegistrationService {
   }
 
 
-  public loginUser(username: string, password: string): Observable<any> {
-    const credentials = { username, password };
+  public loginUser(Username: string, Password: string): Observable<any> {
+    const credentials = { Username, Password };
     // Log credentials before sending the request
     console.log('Login credentials:', credentials);
-  
-    return this.http.post<any>(`${apiUrl}login`, credentials).pipe(
+    return this.http.post<any>(`${apiUrl}login?Username=${Username}&Password=${Password}`, credentials).pipe(
       map((response: any) => {
         localStorage.setItem('token', response.token);
         return response;
