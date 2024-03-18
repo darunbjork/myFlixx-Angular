@@ -1,21 +1,23 @@
-// src/app/user-login-form/user-login-form.component.ts
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserRegistrationService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
+import { Router } from '@angular/router'; // Import Router
 
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
   styleUrls: ['./user-login-form.component.scss']
 })
+
 export class UserLoginFormComponent implements OnInit {
   @Input() userData = { Username: '', Password: '' };
 
   constructor(
-    public fetchApiData: UserRegistrationService,
+    public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private router: Router 
   ) { }
 
   ngOnInit(): void {}
@@ -39,6 +41,7 @@ export class UserLoginFormComponent implements OnInit {
     this.snackBar.open('User logged in successfully!', 'OK', { duration: 2000 });
     localStorage.setItem('user', JSON.stringify(result.user));
     localStorage.setItem('token', JSON.stringify(result.token));
+    this.router.navigate(['movies']); // Navigate to movies component after successful login
   }
 
   private handleLoginError(error: any): void {
