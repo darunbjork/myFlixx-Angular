@@ -1,47 +1,9 @@
-//src/app/fetch-api-data.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 
-//Declaring the api url that will provide data for the client app
-const apiUrl = 'https://flixster-movies-7537569b59ac.herokuapp.com/'; // Replace with your actual API URL
-
-@Injectable({
-  providedIn: 'root'
-})
-export class FetchApiDataService {
-  private userData = new BehaviorSubject<any>({});
-  currentUser = this.userData.asObservable();
-
-  private movies = new BehaviorSubject<any>({});
-  moviesList = this.movies.asObservable();
-
-  constructor(private http: HttpClient) {}
-
-  /**
-   * Making the api call for various endpoints
-   * @param url - The endpoint URL (relative to the base URL)
-   * @param options Optional configuration for the request (headers, params, etc.)
-   * @returns an observable with the response data
-   */
-  fetchData(url: string, options?: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + token,
-    });
-
-    return this.http.get(apiUrl + url, { headers: options ? { ...headers, ...options.headers } : headers })
-      .pipe(
-        map(this.extractResponseData),
-        catchError(this.handleError)
-      );
-  }
-
-
-
-/*
 const apiUrl = 'https://flixster-movies-7537569b59ac.herokuapp.com/';
 
 @Injectable({
@@ -49,7 +11,6 @@ const apiUrl = 'https://flixster-movies-7537569b59ac.herokuapp.com/';
 })
 
 
-
 export class FetchApiDataService {
   private userData = new BehaviorSubject<any>({});
   currentUser = this.userData.asObservable();
@@ -58,7 +19,6 @@ export class FetchApiDataService {
   moviesList = this.movies.asObservable();
 
   constructor(private http: HttpClient) {}
-  */
   
   public userRegistration(userDetails: any): Observable<any> {
     return this.http.post(apiUrl + 'users', userDetails).pipe(
@@ -87,13 +47,16 @@ export class FetchApiDataService {
       })
     );
   }
-  
 
-  // Endpoint to get all movies (requires authorization)
-  public getAllMovies(): Observable<any> {
-    const headers = this.addAuthHeaders();
-    console.log('Headers:', headers); // Log headers to ensure token is present
-    return this.http.get<any>(`${apiUrl}movies`, { headers }).pipe(
+   // Making api call for getting the list of movies
+   public getAllMovies(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      }
+    );
+    return this.http.get(apiUrl + 'movies', { headers }).pipe(
       map((response: any) => {
         console.log('Response:', response); // Log response to check if movies are being fetched
         return response;
@@ -101,21 +64,6 @@ export class FetchApiDataService {
       catchError(this.handleError)
     );
   }
-
-  /*
-
-   // Making api call for getting the list of movies
-   public getAllMovies(): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies', {headers: new HttpHeaders(
-      {
-        Authorization: 'Bearer ' + token,
-      })}).pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
-  }
-  */
 
   public getOneMovie(movieId: string): Observable<any> {
     const headers = this.addAuthHeaders();
@@ -194,10 +142,19 @@ export class FetchApiDataService {
   // Helper function to add authorization headers
   private addAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
-    return new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
+    if (token) {
+      return new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      });
+    } else {
+      // Handle case when token is not available
+      // For example, redirect to login page or prompt user to login
+      // You can throw an error here if necessary
+      console.error('Token not found in localStorage');
+      return new HttpHeaders();
+    }
   }
+  
 
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
@@ -211,4 +168,3 @@ export class FetchApiDataService {
     return throwError('Something bad happened; please try again later.');
   }
 }
-

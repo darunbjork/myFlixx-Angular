@@ -40,7 +40,7 @@ export class UserLoginFormComponent implements OnInit {
     this.dialogRef.close();
     this.snackBar.open('User logged in successfully!', 'OK', { duration: 2000 });
     localStorage.setItem('user', JSON.stringify(result.user));
-    localStorage.setItem('token', JSON.stringify(result.token));
+    localStorage.setItem('token', result.token);
     this.router.navigate(['movies']); // Navigate to movies component after successful login
   }
 
