@@ -1,0 +1,8 @@
+<!-- src/app/navbar/navbar.component.html -->
+<mat-toolbar color="primary" *ngIf="isLoggedIn()">
+    <span>My App</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/movies" *ngIf="isLoggedIn()">Home</button> 
+    <button mat-button *ngIf="isLoggedIn()" routerLink="/profile">Profile</button>
+    <button mat-button *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
+</mat-toolbar>

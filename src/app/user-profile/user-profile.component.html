@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<div class="profile-page">
+    <h2>Profile</h2>
+    <div class="user-info">
+        Username: {{user.Username}} <br/>
+        Email: {{user.Email}} <br/>
+        Birthday: {{user.Birth | date:'longDate'}}<br/>
+    </div>
+    <div class="actions">
+        <button (click)="editUserProfile()">Edit Profile</button>
+        <button (click)="deleteUserProfile()">Delete Profile</button>
+    </div>
+</div>

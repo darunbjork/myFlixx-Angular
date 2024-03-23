@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-card',
@@ -14,7 +15,8 @@ export class MovieCardComponent implements OnInit {
 
   constructor(
     private fetchApiData: FetchApiDataService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,5 +43,12 @@ export class MovieCardComponent implements OnInit {
         }
       }
     );
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.loggedIn = false;
+    this.snackBar.open('Logged out successfully!', 'OK', { duration: 2000 });
+    this.router.navigate(['/login']); // Redirect to login page after logout
   }
 }

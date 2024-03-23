@@ -18,11 +18,19 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GenreDialogComponent } from './genre-dialog/genre-dialog.component';
+import { DirectorDialogComponent } from './director-dialog/director-dialog.component';
+import { MovieDialogComponent } from './movie-dialog/movie-dialog.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: UserProfileComponent }, 
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -33,7 +41,15 @@ const appRoutes: Routes = [
     MovieCardComponent,
     UserRegistrationFormComponent,
     UserLoginFormComponent,
-  WelcomePageComponent
+  WelcomePageComponent,
+  UserProfileComponent,
+  GenreDialogComponent,
+  DirectorDialogComponent,
+  MovieDialogComponent,
+  GenreDialogComponent,
+    DirectorDialogComponent,
+    MovieDialogComponent,
+    NavbarComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -48,7 +64,8 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
