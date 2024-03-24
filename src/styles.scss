@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -35,7 +34,58 @@ $myFlix-Angular-client-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($myFlix-Angular-client-theme);
 
-/* You can add global styles to this file, and also import other style files */
+/* Global styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: #f0f0f0; /* Light gray background */
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Additional styles for specific components */
+/* Adjust styles for movie cards */
+.mat-card {
+  background-color: #fff; /* White background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+  }
+}
+
+/* Adjust styles for buttons */
+.mat-raised-button {
+  border-radius: 4px;
+  background-color: #2196f3; /* Material blue */
+  color: #fff; /* White text */
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #1976d2; /* Slightly darker blue on hover */
+  }
+}
+
+/* Adjust styles for toolbar */
+.mat-toolbar {
+  background-color: #1976d2; /* Darker blue */
+}
+
+/* Adjust styles for dialog */
+.mat-dialog-container {
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black overlay */
+}
+
+/* Adjust styles for dialog content */
+.mat-dialog-content {
+  background-color: #fff; /* White background */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Adjust styles for dialog title */
+.mat-dialog-title {
+  color: #fff; /* White text */
+}

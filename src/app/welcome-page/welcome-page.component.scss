@@ -1,0 +1,30 @@
+.main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  h1 {
+    font-size: 3rem; /* Increase font size for better emphasis */
+    margin-bottom: 30px; /* Add more space between heading and buttons */
+    color: #333; /* Adjust heading color */
+    text-align: center; /* Center-align heading text */
+  }
+
+  button {
+    margin-bottom: 20px; /* Increase margin bottom for better spacing */
+    padding: 10px 20px; /* Increase padding for buttons */
+    font-size: 1.2rem; /* Increase button font size */
+    border-radius: 5px; /* Add border radius to buttons */
+    background-color: #007bff; /* Change button background color */
+    color: #fff; /* Change button text color */
+    border: none; /* Remove button border */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+  }
+
+  button:hover {
+    background-color: #0056b3; /* Darken button color on hover */
+  }
+}

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <!-- src/app/navbar/navbar.component.html -->
-<mat-toolbar color="primary" *ngIf="isLoggedIn()">
+<mat-toolbar color="primary">
     <span>My App</span>
     <span class="spacer"></span>
-    <button mat-button routerLink="/movies" *ngIf="isLoggedIn()">Home</button> 
-    <button mat-button *ngIf="isLoggedIn()" routerLink="/profile">Profile</button>
-    <button mat-button *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
-</mat-toolbar>
+    <button mat-button routerLink="/movies" *ngIf="isLoggedIn()">HOME</button>
+    <button mat-button routerLink="/profile" *ngIf="isLoggedIn()">PROFILE</button>
+    <button mat-button (click)="logout()" *ngIf="isLoggedIn()">LOGOUT</button>
+  </mat-toolbar>
+  

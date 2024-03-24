@@ -1,0 +1,26 @@
+/* Navbar Component Styles */
+
+.mat-toolbar {
+    background-color: #1e1e1e; /* Set primary color for the toolbar */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Add transition effect */
+  }
+  
+  .mat-toolbar-row {
+    justify-content: space-between; /* Align items to the start and end */
+  }
+  
+  .mat-toolbar button {
+    color: #ffffff; /* Set text color for buttons */
+    font-weight: bold; /* Make button text bold */
+    transition: color 0.3s ease; /* Add transition effect for text color */
+  }
+  
+  .mat-toolbar button:hover {
+    color: #ff4081; /* Change text color on hover */
+  }
+  
+  .spacer {
+    flex: 1; /* Fill remaining space in the toolbar */
+  }
+  

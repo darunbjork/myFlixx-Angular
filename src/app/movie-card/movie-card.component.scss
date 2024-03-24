@@ -1,0 +1,56 @@
+/* movie-card.component.scss */
+
+/* Container for movie cards */
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Individual movie card */
+mat-card {
+  width: 300px;
+  margin: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  border-radius: 10px; /* Add border radius to the card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition effect */
+}
+
+/* Apply hover effect */
+mat-card:hover {
+  transform: translateY(-5px); /* Move card upwards on hover */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Add a shadow effect on hover */
+}
+
+/* Movie title */
+mat-card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Movie subtitle */
+mat-card-subtitle {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Movie image */
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px; /* Add rounded corners to the image */
+}
+
+/* Movie actions */
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Favorite icon */
+mat-icon {
+  font-size: 24px;
+  color: #ff4081; /* Pink color */
+  cursor: pointer;
+}

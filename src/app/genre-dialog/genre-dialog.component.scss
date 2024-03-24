@@ -1,0 +1,19 @@
+/* genre-dialog.component.scss */
+
+.genre-container {
+    width: 400px;
+  }
+  
+  .genre-header {
+    justify-content: space-between;
+    background-color: #4caf50; /* Green color */
+  }
+  
+  .genre-title {
+    color: white;
+    margin: 0;
+  }
+  
+  .genre-content {
+    padding: 20px;
+  }

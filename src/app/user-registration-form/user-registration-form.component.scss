@@ -1,0 +1,44 @@
+/* User Registration Form Component Styles */
+
+.user-registration-card {
+  max-width: 400px; /* Limit card width */
+  margin: 0 auto; /* Center align the card */
+  animation: sparkle 1s linear infinite alternate, pulse;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+mat-form-field {
+  width: 100%; /* Set form field width to 100% */
+  margin-bottom: 20px; /* Add some spacing between form fields */
+}
+
+.mat-card-actions {
+  justify-content: center; /* Center align card actions */
+}
+
+mat-raised-button {
+  width: 100%; /* Make button fill the width of the card */
+}
+
+@keyframes sparkle {
+  0% {
+    background-position: -200px;
+  }
+  100% {
+    background-position: 200px;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
