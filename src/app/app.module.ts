@@ -25,6 +25,7 @@ import { GenreDialogComponent } from './genre-dialog/genre-dialog.component';
 import { DirectorDialogComponent } from './director-dialog/director-dialog.component';
 import { MovieDialogComponent } from './movie-dialog/movie-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SynopsisDialogComponent } from './synopsis-dialog/synopsis-dialog.component';
 
 
 const appRoutes: Routes = [
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
   GenreDialogComponent,
     DirectorDialogComponent,
     MovieDialogComponent,
-    NavbarComponent
+    NavbarComponent,
+    SynopsisDialogComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

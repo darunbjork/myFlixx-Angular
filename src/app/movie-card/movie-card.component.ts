@@ -1,8 +1,13 @@
-//src/app/movie-card/movie-card.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
+import { DirectorDialogComponent } from '../director-dialog/director-dialog.component';
+import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.component';
+
+
 
 @Component({
   selector: 'app-movie-card',
@@ -11,19 +16,16 @@ import { Router } from '@angular/router';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
-  loggedIn: boolean = false;
 
   constructor(
     private fetchApiData: FetchApiDataService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog // Inject MatDialog
   ) { }
 
   ngOnInit(): void {
-    this.loggedIn = !!localStorage.getItem('token');
-    if (this.loggedIn) {
-      this.getMovies();
-    }
+    this.getMovies();
   }
 
   getMovies(): void {
@@ -34,21 +36,29 @@ export class MovieCardComponent implements OnInit {
       },
       (error: any) => {
         console.error('Error fetching movies:', error);
-        if (error.status === 401) {
-          this.snackBar.open('You are not authorized. Please log in again.', 'OK', { duration: 3000 });
-          // Optionally, you can redirect the user to the login page
-          // this.router.navigate(['/login']);
-        } else {
-          this.snackBar.open('Something went wrong. Please try again later.', 'OK', { duration: 3000 });
-        }
+        this.snackBar.open('Something went wrong. Please try again later.', 'OK', { duration: 3000 });
       }
     );
   }
 
-  logout(): void {
-    localStorage.removeItem('token');
-    this.loggedIn = false;
-    this.snackBar.open('Logged out successfully!', 'OK', { duration: 2000 });
-    this.router.navigate(['/login']); // Redirect to login page after logout
-  }
+  openGenreDialog(name: string, description: string): void {
+    this.dialog.open(GenreDialogComponent, {
+      data: { name, description },
+    });
+}
+
+
+openDirectorDialog(name: string, bio: string, birth: string, death?: string): void {
+  this.dialog.open(DirectorDialogComponent, {
+    data: { name, bio, birth, death },
+  });
+}
+
+
+openSynopsisDialog(synopsis: string): void {
+  this.dialog.open(SynopsisDialogComponent, {
+    data: { synopsis }
+  });
+}
+
 }

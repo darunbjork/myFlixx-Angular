@@ -1,3 +1,4 @@
+//src/app/genre-dialog/genre-dialog.component.ts
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 

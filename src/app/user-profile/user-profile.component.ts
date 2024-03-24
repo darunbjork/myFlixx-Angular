@@ -1,6 +1,7 @@
-//src/app/user-profile/user-profile.component.ts
+// src/app/user-profile/user-profile.component.ts
+
 import { Component, OnInit } from '@angular/core';
-import { FetchApiDataService } from '../fetch-api-data.service'; // Adjust the path as necessary
+import { FetchApiDataService } from '../fetch-api-data.service'; // Import your API service
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -13,42 +14,45 @@ export class UserProfileComponent implements OnInit {
   user: any = {}; // Placeholder for user data
 
   constructor(
-    private fetchApiData: FetchApiDataService,
+    private fetchApiData: FetchApiDataService, // Inject the API service
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    this.loadUserProfile();
+    // Fetch user profile data when the component initializes
+    this.fetchUserProfile();
   }
 
-  loadUserProfile(): void {
-    // Assuming username is stored in local storage for this example
+  fetchUserProfile(): void {
+    // Retrieve username from local storage
     const username = localStorage.getItem('username');
     if (username) {
+      // Fetch user data from API using the username
       this.fetchApiData.getUser(username).subscribe({
         next: (userData) => {
-          this.user = userData;
+          this.user = userData; // Assign fetched user data to the user variable
         },
         error: (error) => {
-          // Handle error (e.g., user not found or API call failure)
+          // Handle error when user data cannot be fetched
           console.error('Failed to fetch user data', error);
           this.snackBar.open('Failed to load user profile', 'OK', { duration: 3000 });
         }
       });
     } else {
-      // Handle case where username is not available (e.g., user not logged in)
+      // Redirect to login page if username is not available
       this.snackBar.open('User not logged in', 'OK', { duration: 3000 });
-      this.router.navigate(['/login']); // Redirect to login page or appropriate route
+      this.router.navigate(['/login']);
     }
   }
 
   editUserProfile(): void {
-    // Implement logic for editing user profile
-    this.router.navigate(['/edit-profile']); // Adjust route as necessary
+    // Implement logic to navigate to the edit profile page
+    this.router.navigate(['/edit-profile']);
   }
 
   deleteUserProfile(): void {
-    // This part seems okay as is, just make sure 'username' is correctly replaced with actual username
+    // Implement logic to delete user profile
+    // For now, leave it empty or provide a placeholder message
   }
 }

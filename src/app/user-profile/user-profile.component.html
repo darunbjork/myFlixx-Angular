@@ -1,13 +1,19 @@
 <!DOCTYPE html>
+<!-- src/app/user-profile/user-profile.component.html -->
+
 <div class="profile-page">
     <h2>Profile</h2>
     <div class="user-info">
-        Username: {{user.Username}} <br/>
-        Email: {{user.Email}} <br/>
-        Birthday: {{user.Birth | date:'longDate'}}<br/>
+        <!-- Display user's username and email -->
+        <p><strong>Username:</strong> {{ user?.Username }}</p>
+        <p><strong>Email:</strong> {{ user?.Email }}</p>
+        <!-- Optionally display user's birthday -->
+         <p><strong>Birthday:</strong> {{ user?.Birth | date:'longDate' }}</p> 
     </div>
     <div class="actions">
-        <button (click)="editUserProfile()">Edit Profile</button>
-        <button (click)="deleteUserProfile()">Delete Profile</button>
+        <!-- Button to edit user profile -->
+        <button mat-raised-button color="primary" (click)="editUserProfile()">Edit Profile</button>
+        <!-- Button to delete user profile (optional) -->
+        <button mat-raised-button color="warn" (click)="deleteUserProfile()">Delete Profile</button> 
     </div>
 </div>
