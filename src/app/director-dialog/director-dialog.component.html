@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <div class="director-container">
   <mat-toolbar>
-      <mat-toolbar-row class="director-header">
-          <h3 mat-dialog-title class="director-title">
-              {{ data.name }}
-          </h3>
-          <button mat-icon-button aria-label="Close button with an X" mat-dialog-close color="primary">
-              <mat-icon>close</mat-icon>
-          </button>
-      </mat-toolbar-row>
+    <mat-toolbar-row class="director-header">
+      <h3 mat-dialog-title class="director-title">
+        {{ data.name }}
+      </h3>
+      <span class="spacer"></span> <!-- Added spacer -->
+      <button mat-icon-button aria-label="Close button with an X" mat-dialog-close color="primary">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
   </mat-toolbar>
   <mat-dialog-content class="director-content">
-      <p><strong>Biography:</strong> {{ data.bio }}</p>
-      <p><strong>Birth:</strong> {{ data.birth }}</p>
-      <p *ngIf="data.death"><strong>Death:</strong> {{ data.death }}</p>
+    <p><strong>Biography:</strong> {{ data.bio }}</p>
+    <p><strong>Birth:</strong> {{ data.birth }}</p>
+    <p *ngIf="data.death"><strong>Death:</strong> {{ data.death }}</p>
   </mat-dialog-content>
 </div>

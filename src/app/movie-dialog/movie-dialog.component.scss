@@ -1,0 +1,33 @@
+/* Custom styles for the dialog component */
+
+/* Dialog title */
+h1.mat-dialog-title {
+    font-size: 24px; /* Adjust title font size */
+    color: #333; /* Set title color */
+    margin-bottom: 10px; /* Add some bottom margin */
+  }
+  
+  /* Dialog content */
+  div.mat-dialog-content {
+    font-size: 18px; /* Adjust content font size */
+    color: #666; /* Set content color */
+    margin-bottom: 20px; /* Add some bottom margin */
+  }
+  
+  /* Dialog actions */
+  div.mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end; /* Align actions to the right */
+  }
+  
+  /* Close button */
+  button.mat-button.mat-dialog-close {
+    color: #007bff; /* Set button text color */
+    font-weight: bold; /* Make button text bold */
+  }
+  
+  /* Hover effect for close button */
+  button.mat-button.mat-dialog-close:hover {
+    text-decoration: underline; /* Underline button text on hover */
+  }
+  

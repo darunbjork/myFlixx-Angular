@@ -1,20 +1,19 @@
 /* director-dialog.component.scss */
 
 .director-container {
-    width: 400px;
-  }
-  
-  .director-header {
-    justify-content: space-between;
-    background-color: #2196f3; /* Blue color */
-  }
-  
-  .director-title {
-    color: white;
-    margin: 0;
-  }
-  
-  .director-content {
-    padding: 20px;
-  }
-  
+  width: 400px;
+}
+
+.director-header {
+  justify-content: space-between;
+  background-color: #a43d76; /* Change to a different color */
+}
+
+.director-title {
+  color: #ffffff; /* White color */
+  margin: 0;
+}
+
+.director-content {
+  padding: 20px;
+}

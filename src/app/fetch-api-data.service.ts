@@ -1,3 +1,4 @@
+//src/app/fetch-api-data.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
@@ -66,6 +67,7 @@ export class FetchApiDataService {
   }
 
   public getOneMovie(movieId: string): Observable<any> {
+    const token = localStorage.getItem('token')
     const headers = this.addAuthHeaders();
     return this.http.get<any>(`${apiUrl}/movies/${movieId}`, { headers }).pipe(
       map((response: any) => response),

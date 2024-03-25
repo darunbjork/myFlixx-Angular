@@ -1,0 +1,19 @@
+.edit-profile-dialog {
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .edit-profile-dialog-content {
+    form {
+      mat-form-field {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  
+  .edit-profile-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  

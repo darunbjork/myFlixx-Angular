@@ -1,10 +1,12 @@
+<!DOCTYPE html>
 <div class="profile-page">
     <h2>Profile</h2>
-    <div class="user-info">
+    <div class="user-info" *ngIf="user">
       <p><strong>Username:</strong> {{ user?.Username }}</p>
       <p><strong>Email:</strong> {{ user?.Email }}</p>
       <p><strong>Birthday:</strong> {{ user?.Birth | date:'longDate' }}</p>
     </div>
+    
     <div class="actions">
       <button mat-raised-button color="primary" (click)="editUserProfile()">Edit Profile</button>
       <button mat-raised-button color="warn" (click)="deleteUserProfile()">Delete Profile</button>

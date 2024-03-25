@@ -7,8 +7,6 @@ import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
 import { DirectorDialogComponent } from '../director-dialog/director-dialog.component';
 import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.component';
 
-
-
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -45,20 +43,31 @@ export class MovieCardComponent implements OnInit {
     this.dialog.open(GenreDialogComponent, {
       data: { name, description },
     });
-}
+  }
 
+  openDirectorDialog(name: string, bio: string, birth: string, death?: string): void {
+    this.dialog.open(DirectorDialogComponent, {
+      data: { name, bio, birth, death },
+    });
+  }
 
-openDirectorDialog(name: string, bio: string, birth: string, death?: string): void {
-  this.dialog.open(DirectorDialogComponent, {
-    data: { name, bio, birth, death },
-  });
-}
+  openSynopsisDialog(synopsis: string): void {
+    this.dialog.open(SynopsisDialogComponent, {
+      data: { synopsis }
+    });
+  }
 
+  toggleFavorite(movie: any): void {
+    const index = this.movies.findIndex(m => m._id === movie._id);
+    if (index > -1) {
+      this.movies[index].isFavorite = !this.movies[index].isFavorite;
+      // You can send an API request here to update the favorite status in the backend
+    }
+  }
 
-openSynopsisDialog(synopsis: string): void {
-  this.dialog.open(SynopsisDialogComponent, {
-    data: { synopsis }
-  });
-}
+  isFavorite(movie: any): boolean {
+    const index = this.movies.findIndex(m => m._id === movie._id);
+    return index > -1 ? this.movies[index].isFavorite : false;
+  }
 
 }
