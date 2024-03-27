@@ -93,7 +93,7 @@ export class FetchApiDataService {
 
   public getUser(username: string): Observable<any> {
     const headers = this.addAuthHeaders();
-    return this.http.get<any>(`${apiUrl}/users/${username}`, { headers }).pipe(
+    return this.http.get<any>(`${apiUrl}users/${username}`, { headers }).pipe(
       map((response: any) => response),
       catchError(this.handleError)
     );

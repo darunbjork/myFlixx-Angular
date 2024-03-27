@@ -24,7 +24,8 @@ export class UserProfileComponent implements OnInit {
   fetchUserProfile(): void {
     const username = localStorage.getItem('username');
     if (username) {
-      this.fetchApiData.getUser(username).subscribe({
+      const userObj =JSON.parse(username);
+      this.fetchApiData.getUser(userObj.username).subscribe({
         next: (userData) => {
           this.user = userData;
         },
